@@ -1,0 +1,35 @@
+--Create a gaming store database
+
+CREATE TABLE games (id INTEGER, name TEXT, console TEXT, cost INTEGER);
+
+INSERT into games VALUES (1, "God of War", "PS", 20);
+INSERT into games VALUES (2, "Bloodbourne", "PS", 25);
+INSERT into games VALUES (3, "Gears of War", "XBOX", 15);
+INSERT into games VALUES (4, "Diablo", "PC", 10);
+INSERT into games VALUES (5, "Crash", "PS", 5);
+INSERT into games VALUES (6, "Halo", "XBOX", 10); 
+INSERT into games VALUES (7, "Fallout", "PC", 15); 
+INSERT into games VALUES (8, "God of War 2", "PS", 25);
+INSERT into games VALUES (9, "Valorant", "PC", 0);
+INSERT into games VALUES (10, "Smash Bros", "Switch", 45);
+INSERT into games VALUES (11, "Mario Odyssey", "Switch", 30);
+INSERT into games VALUES (12, "Zelda", "Switch", 60);
+INSERT into games VALUES (13, "World of Warcraft", "PC", 15);
+INSERT into games VALUES (14, "Pokemon", "Switch", 50);
+INSERT into games VALUES (15, "Metal Gear Solid", "PS", 35);
+
+
+--display the database ordered by cost 
+SELECT * FROM games
+ORDER by cost; 
+
+--what is the avg cost of games from the PS console? 
+SELECT AVG(cost) "Average cost of PS games"
+FROM games
+where console="PS"; 
+
+--what are the 5 most expensive games? 
+Select name, console, cost
+from games
+order by cost desc
+limit 5; 
