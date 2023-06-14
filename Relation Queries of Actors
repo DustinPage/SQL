@@ -1,0 +1,70 @@
+CREATE TABLE actors (actor_id INTEGER, name TEXT);
+
+INSERT INTO actors VALUES (1, "Robert Downey Jr");
+INSERT INTO actors VALUES (2, "Charlize Theron");
+INSERT INTO actors VALUES (3, "Johnny Depp");
+INSERT INTO actors VALUES (4, "Rachel McAdams");
+INSERT INTO actors VALUES (5, "Jason Bateman");
+INSERT INTO actors VALUES (6, "Winona Ryder");
+INSERT INTO actors VALUES (7, "Ryan Reynolds");
+INSERT INTO actors VALUES (8, "Julia Roberts");
+INSERT INTO actors VALUES (9, "Brad Pitt");
+INSERT INTO actors VALUES (10, "Zoe Saldana");
+INSERT INTO actors VALUES (11, "Keanu Reeves");
+INSERT INTO actors VALUES (12, "Meryl Streep");
+INSERT INTO actors VALUES (13, "Sean Connery");
+INSERT INTO actors VALUES (14, "Natalie Portman");
+INSERT INTO actors VALUES (15, "Daniel Day Lewis");
+
+CREATE TABLE movies (movie_id INTEGER, title TEXT, released INTEGER, actor_id INTEGER);
+
+INSERT INTO movies VALUES (1, "Sherlock Holmes", 2009, 1);
+INSERT INTO movies VALUES (2, "Hancock", 2008, 2);
+INSERT INTO movies VALUES (3, "Edward Scissorhands", 1990, 3);
+INSERT INTO movies VALUES (4, "Iron Man", 2008, 1);
+INSERT INTO movies VALUES (5, "Deadpool 2", 2018, 7);
+INSERT INTO movies VALUES (6, "Game Night", 2018, 4);
+INSERT INTO movies VALUES (7, "The Adam Project", 2022, 7);
+INSERT INTO movies VALUES (8, "The Old Guard", 2020, 2);
+INSERT INTO movies VALUES (9, "Star Trek", 2009, 10);
+INSERT INTO movies VALUES (10, "Oceans Eleven", 2001, 8);
+INSERT INTO movies VALUES (11, "John Wick", 2014, 11);
+INSERT INTO movies VALUES (12, "The Devil Wears Prada", 2006, 12);
+INSERT INTO movies VALUES (13, "Entrapment", 1999, 13);
+INSERT INTO movies VALUES (14, "V for Vendetta", 2006, 14);
+INSERT INTO movies VALUES (15, "Lincoln", 2012, 15);
+INSERT INTO movies VALUES (1, "Sherlock Holmes", 2009, 4);
+INSERT INTO movies VALUES (2, "Hancock", 2008, 5);
+INSERT INTO movies VALUES (3, "Edward Scissorhands", 1990, 6);
+INSERT INTO movies VALUES (5, "Deadpool 2", 2018, 9);
+INSERT INTO movies VALUES (6, "Game Night", 2018, 5);
+INSERT INTO movies VALUES (7, "The Adam Project", 2022, 10);
+INSERT INTO movies VALUES (9, "Star Trek", 2009, 6);
+INSERT INTO movies VALUES (10, "Oceans Eleven", 2001, 9);
+
+CREATE TABLE movie_pairs (id INTEGER PRIMARY KEY, pair1_id INTEGER, pair2_id INTEGER, movie_id INTEGER);
+
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (1, 4, 1);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (2, 5, 2);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (3, 6, 3);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (7, 9, 5);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (4, 5, 6);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (7, 9, 7);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (6, 10, 9);
+INSERT INTO movie_pairs (pair1_id, pair2_id, movie_id) VALUES (8, 9, 10);
+
+
+--Who's in what movie?--
+SELECT name, title FROM actors
+JOIN movies
+ON actors.actor_id = movies.actor_id;
+
+--Who's shared a movie?--
+SELECT a.name as Actor, b.name as Actor, movies.title as Movie FROM movie_pairs
+    JOIN actors a
+    ON movie_pairs.pair1_id = a.actor_id
+    JOIN actors b
+    ON movie_pairs.pair2_id = b.actor_id
+    JOIN movies
+    WHERE movie_pairs.movie_id = movies.movie_id
+    GROUP BY movies.title;
