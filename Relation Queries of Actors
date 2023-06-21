@@ -1,3 +1,5 @@
+# In this project, I created my own database and pulled various bits of data from it
+
 CREATE TABLE actors (actor_id INTEGER, name TEXT);
 
 INSERT INTO actors VALUES (1, "Robert Downey Jr");
