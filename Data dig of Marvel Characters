@@ -1,3 +1,5 @@
+#  In this project, I pulled a database from KhanAcademy and pulled various bits of data from it
+
 CREATE TABLE marvels (ID INTEGER PRIMARY KEY,
     name TEXT,
     popularity INTEGER,
