@@ -1,4 +1,4 @@
---Create a gaming store database
+# In this project, I created my own database and answered various questions on it
 
 CREATE TABLE games (id INTEGER, name TEXT, console TEXT, cost INTEGER);
 
