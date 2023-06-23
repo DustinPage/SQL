@@ -63,3 +63,17 @@ SELECT track_name, artist_name, energy,
 END as energy_level
 FROM BIT_DB.Spotifydata
 ORDER BY energy_level;
+
+
+--Using a CTE table to show every artist with a popularity average greater than 90.
+
+WITH avg_popularity_CTE AS (
+    Select
+    artist_name, AVG(popularity) as avg_popularity
+    FROM Spotifydata
+    GROUP BY artist_name
+    )
+    
+Select artist_name, avg_popularity, 'Top Star' AS tag
+FROM avg_popularity_CTE
+WHERE avg_popularity > 90;
